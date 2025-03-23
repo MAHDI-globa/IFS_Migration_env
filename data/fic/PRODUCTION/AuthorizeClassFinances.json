@@ -1,0 +1,325 @@
+{
+  "@odata.context": "https://example.com/odata/$metadata#AuthorizeClassFinances",
+  "value": [
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdqQUFBOjIwMjQxMjEwMTEyOTQ0Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=TOO^",
+      "Objgrants": null,
+      "Company": "TOO",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdqQUFCOjIwMjQxMjEwMTEzMTIzIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=22M^",
+      "Objgrants": null,
+      "Company": "22M",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdrQUFBOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=AST^",
+      "Objgrants": null,
+      "Company": "AST",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdsQUFBOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=GAP^",
+      "Objgrants": null,
+      "Company": "GAP",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdsQUFCOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=GAE^",
+      "Objgrants": null,
+      "Company": "GAE",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFBOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=EQL^",
+      "Objgrants": null,
+      "Company": "EQL",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFCOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=SAS^",
+      "Objgrants": null,
+      "Company": "SAS",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFDOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=GSE^",
+      "Objgrants": null,
+      "Company": "GSE",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFEOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=PRG^",
+      "Objgrants": null,
+      "Company": "PRG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFFOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=PQF^",
+      "Objgrants": null,
+      "Company": "PQF",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFGOjIwMjQxMjEwMTAxNzM5Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=97R^",
+      "Objgrants": null,
+      "Company": "97R",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFHOjIwMjQxMjEwMTAxOTUxIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=GAI^",
+      "Objgrants": null,
+      "Company": "GAI",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFIOjIwMjQxMjEwMTAyNzE2Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=ART^",
+      "Objgrants": null,
+      "Company": "ART",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFJOjIwMjQxMjEwMTAyOTAzIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=BPK^",
+      "Objgrants": null,
+      "Company": "BPK",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFKOjIwMjQxMjEwMTAzMjIxIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=ILK^",
+      "Objgrants": null,
+      "Company": "ILK",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFLOjIwMjQxMjEwMTA0ODIwIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=STA^",
+      "Objgrants": null,
+      "Company": "STA",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFMOjIwMjQxMjEwMTA1ODAxIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=STM^",
+      "Objgrants": null,
+      "Company": "STM",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFNOjIwMjQxMjEwMTEwMjA4Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=ALP^",
+      "Objgrants": null,
+      "Company": "ALP",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFOOjIwMjQxMjEwMTEwNjM3Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=CIT^",
+      "Objgrants": null,
+      "Company": "CIT",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFPOjIwMjQxMjEwMTEwODM3Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=VIT^",
+      "Objgrants": null,
+      "Company": "VIT",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFQOjIwMjQxMjEwMTExMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=DEL^",
+      "Objgrants": null,
+      "Company": "DEL",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFROjIwMjQxMjEwMTEyMTExIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=7DE^",
+      "Objgrants": null,
+      "Company": "7DE",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFSOjIwMjQxMjEwMTEyMzAxIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=NWG^",
+      "Objgrants": null,
+      "Company": "NWG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFTOjIwMjQxMjEwMTEyNTAyIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=IVR^",
+      "Objgrants": null,
+      "Company": "IVR",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFUOjIwMjQxMjEwMTEzNjE5Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=GEN^",
+      "Objgrants": null,
+      "Company": "GEN",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFVOjIwMjQxMjEwMTE0MzU2Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=ASG^",
+      "Objgrants": null,
+      "Company": "ASG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjdtQUFWOjIwMjQxMjEwMTE0ODA4Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=YGG^",
+      "Objgrants": null,
+      "Company": "YGG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjduQUFBOjIwMjQxMjA5MTEyMjM1Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=OMG^",
+      "Objgrants": null,
+      "Company": "OMG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjduQUFCOjIwMjQxMjEwMTEyNjU2Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=PAA^",
+      "Objgrants": null,
+      "Company": "PAA",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjduQUFDOjIwMjQxMjEwMTEzMzQ3Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=AGN^",
+      "Objgrants": null,
+      "Company": "AGN",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjduQUFEOjIwMjQxMjEwMTEzODIxIg==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=SIG^",
+      "Objgrants": null,
+      "Company": "SIG",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    },
+    {
+      "@odata.etag": "W/\"Vy8iQUFBVGNLQUM3QUFCTjduQUFFOjIwMjQxMjEwMTE0NjE0Ig==\"",
+      "luname": "AuthorizeClassFinance",
+      "keyref": "AUTH_CLASS=MAX^COMPANY=PNK^",
+      "Objgrants": null,
+      "Company": "PNK",
+      "AuthClass": "MAX",
+      "Description": "Default",
+      "__migrated__": true
+    }
+  ]
+}

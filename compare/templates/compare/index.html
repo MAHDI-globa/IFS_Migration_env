@@ -1,0 +1,294 @@
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Migration GDP IFS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background-color: #f4f7fa;
+    }
+    table {
+      width: 100%;
+      margin-bottom: 20px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    th, td {
+      border: 1px solid #dee2e6;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f8f9fa;
+    }
+
+    /* Différences en orange */
+    .highlight-cell {
+      background-color: #ffa500 !important; /* Orange vif pour les cellules */
+    }
+    .highlight-row {
+      background-color: #ffecb3 !important; /* Orange pâle pour la ligne */
+    }
+
+    /* Lignes sélectionnées en bleu clair */
+    .selected-row {
+      background-color: lightblue !important;
+      color: white;
+    }
+
+    /* Lignes migrées en vert clair */
+    .migrated-row {
+      background-color: lightgreen !important;
+      color: white;
+    }
+
+    /*
+      Quand .highlight-row ET .migrated-row sont présentes,
+      on force la priorité au vert.
+    */
+    tr.highlight-row.migrated-row {
+      background-color: lightgreen !important;
+      color: white !important;
+    }
+  </style>
+</head>
+<body class="container-fluid py-4">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Comparateur IFS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarContent" aria-controls="navbarContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">À propos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1 class="mb-4 text-center">Migration guide de parametrage IFS</h1>
+
+  <!-- Formulaire de sélection -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      Sélection de la table et des environnements
+    </div>
+    <div class="card-body">
+      <form id="selection-form" method="get" class="row gy-2 gx-3 align-items-center">
+        <div class="col-md-4">
+          <label class="form-label" for="table">Table :</label>
+          <select name="table" id="table" class="form-select" onchange="this.form.submit()">
+            <option value="">-- Choisir une table --</option>
+            {% for tbl in tables %}
+              {% if tbl != "__all_envs__" %}
+                <option value="{{ tbl }}" {% if tbl == selected_table %}selected{% endif %}>{{ tbl }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        {% if selected_table %}
+        <div class="col-md-3">
+          <label class="form-label" for="env1">Environnement source :</label>
+          <select name="env1" id="env1" class="form-select">
+            {% for e in environments %}
+              <option value="{{ e }}" {% if e == env1 %}selected{% endif %}>{{ e }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="env2">Environnement cible :</label>
+          <select name="env2" id="env2" class="form-select">
+            {% for e in environments %}
+              <option value="{{ e }}" {% if e == env2 %}selected{% endif %}>{{ e }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary mt-4">Comparer</button>
+        </div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+
+  {% if selected_table and environments %}
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          Environnements disponibles pour <em>{{ selected_table }}</em>
+        </h5>
+        <ul class="list-group list-group-flush">
+          {% for env in environments %}
+            <li class="list-group-item">{{ env }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if env1 and env2 and env1 == env2 %}
+    <div class="alert alert-warning">
+      <strong>⚠️ Merci de choisir deux environnements différents.</strong>
+    </div>
+  {% endif %}
+
+  {% if env1 and env2 and env1 != env2 %}
+    {% if data_env1|length == 0 %}
+      <div class="alert alert-danger">
+        ⚠️ Aucun fichier JSON trouvé dans <strong>{{ env1 }}</strong>.
+      </div>
+    {% endif %}
+    {% if data_env2|length == 0 %}
+      <div class="alert alert-danger">
+        ⚠️ Aucun fichier JSON trouvé dans <strong>{{ env2 }}</strong>.
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if data_env1 and selected_table and env1 and env2 and env1 != env2 %}
+    <form id="promote-form" method="post" action="/promote/">
+      {% csrf_token %}
+      <input type="hidden" name="table" value="{{ selected_table }}">
+      <input type="hidden" name="source_env" value="{{ env1 }}">
+      <input type="hidden" name="target_env" value="{{ env2 }}">
+      <!-- Regrouper toutes les lignes sélectionnées en un champ JSON unique -->
+      <input type="hidden" name="selected_data" id="selected_data">
+
+      <!-- Tableau source -->
+      <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+          {{ env1 }} (source)
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="select-all" onclick="toggleSelectAll(this)"></th>
+                {% for key in data_env1.0.keys %}
+                  <th>{{ key }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in data_env1 %}
+                {% with diff=diffs_env1|get_index:forloop.counter0 %}
+                <tr>
+                  <!-- Checkbox de sélection -->
+                  <td>
+                    <input type="checkbox" class="row-checkbox"
+                           value="{{ row|tojson|escape }}"
+                           onchange="toggleRowHighlight(this)">
+                  </td>
+                  <!-- Cellules du tableau source -->
+                  {% for key in data_env1.0.keys %}
+                    <td class="{% if key in diff %}highlight-cell{% endif %}">
+                      {{ row|get_item:key }}
+                    </td>
+                  {% endfor %}
+                </tr>
+                {% endwith %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bouton de promotion centré -->
+      <div class="text-center mb-4">
+        <button type="button" class="btn btn-success" onclick="submitPromotion()">
+          Promouvoir la sélection
+        </button>
+      </div>
+
+      <!-- Tableau cible -->
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          {{ env2 }} (cible)
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                {% if data_env2|length > 0 %}
+                  {% for key in data_env2.0.keys %}
+                    {% if key != '__migrated__' %}
+                      <th>{{ key }}</th>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in data_env2 %}
+                {% with diff=diffs_env2|get_index:forloop.counter0 %}
+                <tr class="
+                  {% if diff|length > 0 %}highlight-row{% endif %}
+                  {% if row|get_item:'__migrated__' %} migrated-row{% endif %}
+                ">
+                  {# On exclut la clé '__migrated__' de l'affichage #}
+                  {% for key in data_env2.0.keys %}
+                    {% if key != '__migrated__' %}
+                      <td class="{% if key in diff %}highlight-cell{% endif %}">
+                        {{ row|get_item:key }}
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+                {% endwith %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  {% endif %}
+
+  <script>
+    function toggleSelectAll(masterCheckbox) {
+      const checkboxes = document.querySelectorAll('.row-checkbox');
+      checkboxes.forEach(cb => {
+        cb.checked = masterCheckbox.checked;
+        toggleRowHighlight(cb);
+      });
+    }
+
+    function toggleRowHighlight(checkbox) {
+      const row = checkbox.closest('tr');
+      if (checkbox.checked) {
+        row.classList.add('selected-row');
+      } else {
+        row.classList.remove('selected-row');
+      }
+    }
+
+    function submitPromotion() {
+      const selectedArr = [];
+      document.querySelectorAll('.row-checkbox').forEach(cb => {
+        if (cb.checked) {
+          selectedArr.push(cb.value);
+        }
+      });
+      document.getElementById('selected_data').value = JSON.stringify(selectedArr);
+      document.getElementById('promote-form').submit();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.row-checkbox').forEach(cb => {
+        cb.addEventListener('change', () => {
+          toggleRowHighlight(cb);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

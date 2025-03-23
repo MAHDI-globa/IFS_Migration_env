@@ -1,0 +1,94 @@
+{% if data_env1 and data_env2 %}
+{% load custom_tags %}
+
+    <h3 class="mt-5">Comparaison entre <strong>{{ env1 }}</strong> et <strong>{{ env2 }}</strong></h3>
+
+    <form method="post" action="/promote/">
+        {% csrf_token %}
+        <input type="hidden" name="table" value="{{ selected_table }}">
+        <input type="hidden" name="source_env" value="{{ env1 }}">
+        <input type="hidden" name="target_env" value="{{ env2 }}">
+
+        <h5>{{ env1 }} (source)</h5>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all" onclick="toggleSelectAll(this)"></th>
+                        {% for key in data_env1.0.keys %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data_env1 %}
+                        {% with diff=diffs_env1|get_index:forloop.counter0 %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="selected_rows" value="{{ row|tojson|escape }}" onchange="toggleRowHighlight(this)">
+                            </td>
+                            {% for key in data_env1.0.keys %}
+                                <td class="data-cell {% if key in diff %}highlight-cell{% endif %}">{{ row|get_item:key }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endwith %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-success mb-5">Promouvoir la sélection</button>
+    </form>
+
+    <h5>{{ env2 }} (cible)</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    {% for key in data_env2.0.keys %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data_env2 %}
+                    {% with diff=diffs_env2|get_index:forloop.counter0 %}
+                    <tr class="{% if diff|length > 0 %}highlight-row{% endif %} {% if row|get_item:'__migrated__' %}migrated-row{% endif %}">
+                        {% for key in data_env2.0.keys %}
+                            <td class="{% if key in diff %}highlight-cell{% endif %}">{{ row|get_item:key }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+<script>
+function toggleSelectAll(masterCheckbox) {
+    const checkboxes = document.querySelectorAll('input[name="selected_rows"]');
+    checkboxes.forEach(cb => {
+        cb.checked = masterCheckbox.checked;
+        toggleRowHighlight(cb);
+    });
+}
+
+function toggleRowHighlight(checkbox) {
+    const row = checkbox.closest("tr");
+    if (checkbox.checked) {
+        row.classList.add("selected-row");
+    } else {
+        row.classList.remove("selected-row");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const checkboxes = document.querySelectorAll('input[name="selected_rows"]');
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            toggleRowHighlight(cb);
+        });
+    });
+});
+</script>
